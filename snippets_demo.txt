@@ -1,0 +1,14 @@
+============================================================
+1. TEST HANDSHAKE (PASTE INTO TERMINAL)
+============================================================
+{"jsonrpc": "2.0", "id": "1", "method": "initialize", "params": {}}
+
+============================================================
+2. TEST LIST TOOLS (PASTE INTO TERMINAL)
+============================================================
+{"jsonrpc": "2.0", "id": "2", "method": "tools/list", "params": {}}
+
+============================================================
+3. TEST EXECUTE TOOL (PASTE INTO TERMINAL)
+============================================================
+{"jsonrpc": "2.0", "id": "3", "method": "tools/call", "params": {"name": "analyze_production_log", "arguments": {}}}

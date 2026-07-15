@@ -1,0 +1,4 @@
+026-03-26 09:10:01 INFO  [PaymentService] Initiating charge for Transaction #TX9982
+2026-03-26 09:10:05 WARN  [HttpClient] Connection attempt 1 failed: Timeout reaching api.stripe.com
+2026-03-26 09:10:15 ERROR [HttpClient] Connection attempt 3 failed: HTTP 504 Gateway Timeout
+2026-03-26 09:10:15 FATAL [PaymentService] Critical: Stripe API is unreachable. Aborting payment.

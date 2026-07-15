@@ -3,6 +3,7 @@ use std::io::Write;
 use serde_json::Value;
 use serde_json::json;
 use tokio::io::{self, AsyncBufReadExt, BufReader};
+use std::fs;
 
 #[tokio::main]
 async fn main() {
@@ -29,7 +30,7 @@ async fn handle_request(request: Value) {
                 "result": {
                     "protocolVersion": "2024-11-05",
                     "capabilities": {"tools": {}},
-                    "serverInfo": {"name": "roma-mcp", "version": "0.1.0"}
+                    "serverInfo": {"name": "rust_mcp", "version": "0.1.0"}
                 }
             }));
         }
@@ -48,6 +49,25 @@ async fn handle_request(request: Value) {
                                 "properties": {},
                                 "required": []
                             }
+                        }
+                    ]
+                }
+            }));
+        }
+        "tools/call" => {
+            // Read the actual log file and handle errors gracefully
+            let log_content = fs::read_to_string("production-crash.log")
+                .unwrap_or_else(|_| "Error: production-crash.log not found.".to_string());
+
+            // Send the file content back to Claude in the required format
+            send_response(json!({
+                "jsonrpc": "2.0",
+                "id": id,
+                "result": {
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": log_content
                         }
                     ]
                 }

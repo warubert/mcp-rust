@@ -14,7 +14,16 @@ async fn main() {
     }
 }
 
-async fn handle_request(_request: Value) {
-    // Logic to route requests will be implemented here
-    println!("Received request: {}", _request);
+async fn handle_request(request: Value) {
+    match request["method"].as_str().unwrap_or_default() {
+        "initialize" => {
+            // Logic for protocol handshake
+            println!("Initialization successful");
+        }
+        "tools/list" => {
+            // Logic to list available tools
+            println!("Available tools: [\"tool1\", \"tool2\"]");
+        }
+        _ => {}
+    }
 }

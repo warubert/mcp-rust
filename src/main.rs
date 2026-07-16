@@ -19,7 +19,7 @@ async fn main() {
 }
 
 async fn handle_request(request: Value) {
-    let id = request["id"].as_str().unwrap_or_default();
+    let id = request["id"].clone();
 
     match request["method"].as_str().unwrap_or_default() {
         "initialize" => {
